@@ -1,8 +1,8 @@
 function listenCC(){
-  console.log("start insert")
+  console.log("start listen")
   
   chrome.tabs.executeScript({
-    file: "content-script.js"
+    file: "js/content-script.js"
   });
   console.log("done")
 }
@@ -11,7 +11,7 @@ function showCC(){
   console.log("start show")
   
   chrome.tabs.executeScript({
-    file: "content-script.js"
+    file: "js/content-script.js"
   });
   console.log("done")
 }
