@@ -1,0 +1,28 @@
+{
+  "manifest_version": 2,
+  "name": "聽音樂看cc歌詞就是贊",
+  "description": "唱歌神器",
+  "version": "1.0.0",
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content-script.js"
+        ]
+    }
+  ]
+}
