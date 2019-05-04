@@ -1,33 +1,43 @@
 function listenCC(){
-  console.log("start listen")
+  chrome.tabs.query({
+    active: true,
+    currentWindow: true
+  }, function(tabs) {
+    var tabURL = tabs[0].url;
+    var tabId = tabs[0].id;
+    console.log("start listen")
+    localStorage['tabId']=tabId;
+    localStorage['tabURL']=tabURL;
+    console.log("tabid below")
+    console.log(localStorage.getItem("tabId"));
+    console.log("listen finish")
+    });
   
-  chrome.tabs.executeScript({
-    file: "js/content-script.js"
-  });
-  console.log("done")
+}
+function doStuffWithDom(domContent) {
+  console.log('I received the following DOM content:\n' + domContent);
 }
 
 function showCC(){
   console.log("start show")
-  
-  chrome.tabs.executeScript({
-    file: "js/content-script.js"
-  });
-  console.log("done")
+  console.log("tabid below")
+  console.log(localStorage.getItem("tabId"));
+
+console.log("done")
 }
 
 function disablelistenCC(){
   console.log("disable")
 }
-
-var getSelectedTab = (tab) => {
-  var tabId = tab.id;
-  console.log(tabId);
-  var sendMessage = (messageObj) => chrome.tabs.sendMessage(tabId, messageObj);
+chrome.tabs.query({
+  active: true,
+  currentWindow: true
+}, function(tabs) {
+  var tabURL = tabs[0].url;
+  var tabId = tabs[0].id;
+  console.log(tabs);
+  console.log(tabURL);
   document.getElementById('listen').addEventListener('click', listenCC);
   document.getElementById('appear').addEventListener('click', showCC);
-  document.getElementById('disappear').addEventListener('click', disablelistenCC)
-}
-
-var tabyo=chrome.tabs.getSelected(null, getSelectedTab);
-// 2020519357 2020519387 2020519406 
+  document.getElementById('disappear').addEventListener('click', disablelistenCC);
+});

@@ -13,7 +13,8 @@
     "default_popup": "popup.html"
   },
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "tabs"
   ],
   "content_scripts": [
     {
