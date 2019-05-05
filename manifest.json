@@ -25,5 +25,9 @@
         "js/content-script.js"
         ]
     }
-  ]
+  ],
+  "background": {
+    "persistent": false,
+    "scripts": ["js/background.js"]
+}
 }
