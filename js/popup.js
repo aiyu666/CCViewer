@@ -1,12 +1,14 @@
 function listenCC(){
   chrome.tabs.query({
-    index: 0
+    active: true,
+    currentWindow: true
     }, function(tabs) {
     var listentabURL = tabs[0].url;
     var listenTabId = tabs[0].id;
     console.log("start listen")
     localStorage['listenTabId']=listenTabId;
     localStorage['listentabURL']=listentabURL;
+    localStorage['created']=1;
     console.log("listenTabId below")
     console.log(localStorage.getItem("listenTabId"));
     console.log("listen finish")
@@ -17,44 +19,33 @@ function listenCC(){
 
 function showCC(){
   console.log("start show");
-  console.log("tabid below");
   chrome.tabs.query({
   active: true,
   currentWindow: true
   }, function(tabs) {
     var tabId = tabs[0].id;
     localStorage['tabId']=tabId;
-    chrome.tabs.sendMessage(tabId, {action:"createDiv"}, function(response) {  
+    chrome.tabs.sendMessage(tabId, {action:"createDiv"}, function(response) { 
       console.log("The content script call back(createDiv) ");
       console.log(response);
-      sendListenCC();
-      console.log("sendListenis gogogogo");
-
+      StartListenCC();
     });
   });
-  
   console.log("show finish");
 
 }
-function sendListenCC(){
-  console.log("send ListenCC send gogogo");
-  var listenTabId = localStorage.getItem("listenTabId");
-  var tabId = localStorage.getItem("tabId");
-  console.log(typeof listenTabId);
-  console.log(parseInt(listenTabId));
-  chrome.tabs.sendMessage(parseInt(listenTabId),{action:"Listen",tabId:localStorage.getItem("tabId")}, function(response) {  
-    console.log("The content script call back(ListenCC)");
-    console.log(response);
-    console.log("above is ccccc");
-    chrome.tabs.sendMessage(parseInt(tabId),{action:"UpdateDiv",ccMessage:response.ccMessage}, function(response2) {  
-      console.log("The content script call back(ListenCC22222222222)");
-      console.log(response2);
+function StartListenCC(){
+  console.log("StartListenCC send gogogo");
+  var listenTabId = parseInt(localStorage.getItem("listenTabId"));
+  var tabId = parseInt(localStorage.getItem("tabId"));
+  console.log(listenTabId);
+  console.log(tabId);
+  chrome.runtime.sendMessage({"action":"Start Timer","listenTabId":listenTabId,"tabId":tabId},
+    function(response) {
+      console.log("back frome background worker");
+      console.log(response.content);
     });
-  
-  });
-  
 }
-
 
 function disablelistenCC(){
   console.log("disable");
