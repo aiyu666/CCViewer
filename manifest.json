@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "聽音樂看cc歌詞就是贊",
-  "description": "唱歌神器",
+  "name": "CCLyricsViewer",
+  "description": "在其他頁面也可以聽歌看著字幕，太爽啦",
   "version": "1.0.0",
   "icons": {
     "16": "icon.png",

@@ -12,6 +12,7 @@ function listenCC(){
     console.log("listenTabId below")
     console.log(localStorage.getItem("listenTabId"));
     console.log("listen finish")
+    alert("監聽成功\n目前的影片title是->"+tabs[0].title+"\n注意！！！\n按下確認後請勿按下縮的按鈕並獨立拉出分頁。\n靜待日後解決focus的問題")
 
     });
   
