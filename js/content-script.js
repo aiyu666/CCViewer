@@ -4,7 +4,7 @@ function updateCCView(data){
 }
 
 function show(){
-  var data="init";
+  var data="";
   var div=document.createElement("div");
   document.body.appendChild(div); 
   div.align="right";
@@ -38,3 +38,5 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
   }
 
 });
+
+show();
