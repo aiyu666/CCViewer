@@ -12,7 +12,6 @@ function listenCC(){
     console.log("listenTabId below")
     console.log(localStorage.getItem("listenTabId"));
     console.log("listen finish")
-    $('.toast').toast('show');
     });
   
 }
@@ -34,12 +33,11 @@ function StartListenCC(){
   console.log("StartListenCC send gogogo");
   var listenTabId = parseInt(localStorage.getItem("listenTabId"));
   var tabId = parseInt(localStorage.getItem("tabId"));
-  console.log(listenTabId);
-  console.log(tabId);
   chrome.runtime.sendMessage({"action":"Start Timer","listenTabId":listenTabId,"tabId":tabId},
     function(response) {
-      console.log("back frome background worker");
       console.log(response.content);
+      console.log(response.timerId+"<<<<TimerId I get!!");
+      localStorage[tabId.toString()]=response.timerId;
     });
 }
 
@@ -49,12 +47,19 @@ function disablelistenCC(){
     active: true,
     currentWindow: true
     }, function(tabs) {
-    console.log("list tab");
-    console.log("now tab below");
-    console.log(tabs[0].id);
-    console.log("listen tab below");
-    console.log(localStorage.getItem("listenTabId"));;
-    console.log("list finish")
+      var tabId = tabs.id;
+      console.log("Timer Id below");
+      console.log("cacel's tabId is "+tabId);
+      if (localStorage.getItem(tabId.toString())!=null){
+        console.log("tabId's local storage != null");
+        chrome.runtime.sendMessage({"action":"Stop Timer","timerId":localStorage.getItem(tabId.toString())},
+        function(response) {
+          console.log(response.content);
+        });
+      }
+      else{
+        alert("you don't have Listen CC");
+      }
 
     });
 }
@@ -78,3 +83,9 @@ document.addEventListener('DOMContentLoaded', function(dcle) {
   });
  
 });
+var test=12345;
+var testt=1;
+localStorage[test.toString()]=testt;
+console.log("Test Start")
+console.log(localStorage.getItem(test.toString()));
+console.log("Test Done")

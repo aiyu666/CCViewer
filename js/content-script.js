@@ -1,6 +1,5 @@
 function updateCCView(data){
-  var ccView = document.getElementById("ccView");  
-  ccView.innerHTML=data;
+  $("#ccView").html(data);  
 }
 
 function show(){
@@ -15,7 +14,7 @@ function show(){
   }
 
 function getLyrics(){
-  var data=document.getElementsByClassName("ytp-caption-segment").item(0).innerHTML;
+  var data=$(".ytp-caption-segment").html();
   return data;
   }
   

@@ -22,7 +22,7 @@
         "<all_urls>"
       ],
       "js": [
-        "js/content-script.js"
+        "js/content-script.js","boostrap/js/jquery.min.js"
         ]
     }
   ],
