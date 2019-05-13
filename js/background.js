@@ -12,14 +12,9 @@ function backgroundWoker(listenTabId,tabId){
             // console.log(res);
           });
         }
-        
+
       });
 
-}
-
-function cancelBackgroundWorker(timerId){
-  clearInterval(timerId);
-  console.log("Stop Success");
 }
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
@@ -34,7 +29,8 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
       }
     if (request.action == "Stop Timer"){
         console.log("Stop Timer");
-        cancelBackgroundWorker(1);
+        clearInterval(request.timerId);
+        chrome.tabs.sendMessage(parseInt(request.tabId),{action:"UpdateDiv",ccMessage:''}, function(res) { });
         sendResponse({ content: "Response from Background action: "+request.action})
     }
     sendResponse({ content: "Response from Background action: "+request.action})
