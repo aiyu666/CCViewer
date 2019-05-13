@@ -5,15 +5,19 @@ function listenCC(){
     }, function(tabs) {
     var listentabURL = tabs[0].url;
     var listenTabId = tabs[0].id;
-    console.log("start listen")
-    localStorage['listenTabId']=listenTabId;
-    localStorage['listentabURL']=listentabURL;
-    localStorage['created']=1;
-    console.log("listenTabId below")
-    console.log(localStorage.getItem("listenTabId"));
-    console.log("listen finish")
+    if (listentabURL.match("https://www.youtube.com/*") != null){
+      console.log("start listen")
+      localStorage['listenTabId']=listenTabId;
+      localStorage['listentabURL']=listentabURL;
+      localStorage['created']=1;
+      console.log("listenTabId below")
+      console.log(localStorage.getItem("listenTabId"));
+      console.log("listen finish")
+      alert("Listen Success");
+    }else{
+      alert("This is not youtube page you can't use this chrome extension to liseten cc lyrics in other website!")
+    }
     });
-
 }
 
 function showCC(){
@@ -29,8 +33,8 @@ function showCC(){
     StartListenCC();
   });
   console.log("show finish");
-
 }
+
 function StartListenCC(){
   console.log("StartListenCC send gogogo");
   var listenTabId = parseInt(localStorage.getItem("listenTabId"));
@@ -59,7 +63,6 @@ function disablelistenCC(){
     });
     console.log("Clear!");
   });
-
 }
 
 
@@ -83,5 +86,4 @@ document.addEventListener('DOMContentLoaded', function(dcle) {
     }
     console.log("Clear!");
   });
-
 });
