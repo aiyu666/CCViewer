@@ -13,10 +13,12 @@ function listenCC(){
     console.log(localStorage.getItem("listenTabId"));
     console.log("listen finish")
     });
-  
+
 }
 
 function showCC(){
+  $("#disappear").prop('disabled', false);
+  $("#appear").prop('disabled', true);
   console.log("start show");
   chrome.tabs.query({
   active: true,
@@ -51,6 +53,9 @@ function disablelistenCC(){
     chrome.runtime.sendMessage({"action":"Stop Timer","tabId":tabId,"timerId":localStorage.getItem(tabId.toString())},
     function(response) {
       console.log(response.content)
+      localStorage[tabId.toString()]=null;
+      $("#appear").prop('disabled', false);
+      $("#disappear").prop('disabled', true);
     });
     console.log("Clear!");
   });
@@ -58,21 +63,25 @@ function disablelistenCC(){
 }
 
 
-document.addEventListener('DOMContentLoaded', function(dcle) {  
-  var listenButtonEvent = document.getElementById('listen') 
-  var showButtonContent = document.getElementById("appear");  
-  var disshowButtonContent = document.getElementById("disappear");
+document.addEventListener('DOMContentLoaded', function(dcle) {
+  $("#listen").on('click', listenCC);
+  $("#appear").on('click', showCC);
+  $("#disappear").on('click', disablelistenCC);
   chrome.tabs.query({
-    active: true,
-    currentWindow: true
+  active: true,
+  currentWindow: true
   }, function(tabs) {
-    var tabURL = tabs[0].url;
     var tabId = tabs[0].id;
-    console.log(tabs);
-    console.log(tabURL);
-    listenButtonEvent.addEventListener('click', listenCC);
-    showButtonContent.addEventListener('click', showCC);
-    disshowButtonContent.addEventListener('click', disablelistenCC);
+    if (localStorage.getItem(tabId.toString())!=null){
+        $("#appear").prop('disabled', true);
+        $("#disappear").prop('disabled', false);
+        console.log("I have timerId");
+    }else{
+      $("#disappear").prop('disabled', true);
+      $("#appear").prop('disabled', false);
+        console.log("I don't have timerId");
+    }
+    console.log("Clear!");
   });
- 
+
 });
