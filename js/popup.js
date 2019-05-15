@@ -78,12 +78,9 @@ document.addEventListener('DOMContentLoaded', function(dcle) {
     if (localStorage.getItem(tabId.toString())!=null){
         $("#appear").prop('disabled', true);
         $("#disappear").prop('disabled', false);
-        console.log("I have timerId");
     }else{
       $("#disappear").prop('disabled', true);
       $("#appear").prop('disabled', false);
-        console.log("I don't have timerId");
     }
-    console.log("Clear!");
   });
 });
