@@ -39,6 +39,8 @@ function StartListenCC(){
 }
 
 function disablelistenCC(){
+  $("#appear").prop('disabled', false);
+  $("#disappear").prop('disabled', true);
   chrome.tabs.query({
   active: true,
   currentWindow: true
@@ -47,8 +49,10 @@ function disablelistenCC(){
     chrome.runtime.sendMessage({"action":"Stop Timer","tabId":tabId,"timerId":localStorage.getItem(tabId.toString())},
     function(response) {
       localStorage[tabId.toString()]=null;
-      $("#appear").prop('disabled', false);
-      $("#disappear").prop('disabled', true);
+      chrome.tabs.sendMessage(parseInt(tabId),{action:"UpdateDiv",id:"ccViewFL",ccMessage:null}, function(res) {
+          });
+      chrome.tabs.sendMessage(parseInt(tabId),{action:"UpdateDiv",id:"ccViewSL",ccMessage:null}, function(res) {
+          });
     });
   });
 }

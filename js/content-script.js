@@ -13,8 +13,8 @@ function show(){
   divSL.align="right";
   divFL.id="ccViewFL";
   divSL.id="ccViewSL";
-  divFL.style="font-size:20px;background-color:#000000;z-index:3000;position:fixed;top:0;right:0";
-  divSL.style="font-size:20px;background-color:#000000;z-index:3000;position:fixed;top:25px;right:0";
+  divFL.style="font-size:20px;background-color:#000000;z-index:3000;position:fixed;top:0;right:0; padding:0;";
+  divSL.style="font-size:20px;background-color:#000000;z-index:3000;position:fixed;top:25px;right:0;padding: 0;";
   divFL.innerText =dataFL;
   divSL.innerText =dataSL;
   divFL.style.color= "#FFFFFF";
