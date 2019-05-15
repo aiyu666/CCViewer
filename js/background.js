@@ -2,8 +2,6 @@ function backgroundWoker(listenTabId,tabId){
     chrome.tabs.sendMessage(parseInt(listenTabId),{action:"getLyrics"}, function(response) {
         var ccMessageFL=response.ccMessage.dataFL;
         var ccMessageSL=response.ccMessage.dataSL;
-        console.log(ccMessageFL+"<<<<<FL");
-        console.log(ccMessageSL+"<<<<<SL");
         if (ccMessageFL==undefined){
             ccMessageFL=null
         }

@@ -33,15 +33,11 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     sendResponse({ content: "content script finish(createDiv)" });
   }
   if (message.action == "UpdateDiv"){
-    console.log("I got a update with "+message.ccMessage);
     updateCCView(message.id,message.ccMessage);
     sendResponse({ content: "content script finish(UpdateDiv)" });
   }
   if (message.action == "getLyrics"){
     data= getLyrics();
-    console.log("I got data[all] !!!!!!!!!!!!!!!!!YOYOYOYO>>>>>>>>"+data)
-    console.log("I got data[0] !!!!!!!!!!!!!!!!!YOYOYOYO>>>>>>>>"+data[0])
-    console.log("I got data[1] !!!!!!!!!!!!!!!!!YOYOYOYO>>>>>>>>"+data[1])
     sendResponse({ content: "content script finish(getLyrics)" ,ccMessage:{dataFL:data[0],dataSL:data[1]}});
   }
 

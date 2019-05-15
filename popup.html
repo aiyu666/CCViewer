@@ -1,17 +1,24 @@
 <!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml" style="width:100px;">
+<html >
   <head>
     <title>ccViewer </title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/popup.css">
     <script src="boostrap/js/jquery-3.4.1.min.js"></script>
     <script src="/boostrap/js/bootstrap.min.js"></script> 
   </head>
 
   <body id="body">
-    <button id="listen">監聽歌詞</button>
-    <button id="appear">出現吧歌詞</button>
-    <button id="disappear">消失吧歌詞</button>
-    <script src="js/popup.js"></script>
+    <div id="container">
+      <button class="highlight" id="listen"> 監聽歌詞 </button>
+      <button class="highlight" id="appear"> 顯示字幕 </button>
+      <button class="highlight" id="disappear"> 取消字幕 </button>
+      <input type="range" min="12" max="24" value="16" class="slider" id="textSizeInput">
+      <center><p>文字大小(px): <span id="textSizeOutput"></span></p></center>
+      <input type="range" min="0" max="100" value="100" class="slider" id="textColorInput">
+      <center><p>文字透明度(%): <span id="textColorOutput"></span></p></center>
+      <script src="js/popup.js"></script>
+    </div>
   </body>
 </html>
