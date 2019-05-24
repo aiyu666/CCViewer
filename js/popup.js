@@ -32,9 +32,12 @@ function showCC(){
 function StartListenCC(){
   var listenTabId = parseInt(localStorage.getItem("listenTabId"));
   var tabId = parseInt(localStorage.getItem("tabId"));
+  console.log("I will send a request to background");
   chrome.runtime.sendMessage({"action":"Start Timer","listenTabId":listenTabId,"tabId":tabId},
     function(response) {
+      console.log("I got Start timer from background work");
       localStorage[tabId.toString()]=response.timerId;
+      localStorage.getItem(tabId.toString())
     });
 }
 
@@ -68,11 +71,13 @@ document.addEventListener('DOMContentLoaded', function(dcle) {
   }, function(tabs) {
     var tabId = tabs[0].id;
     if (localStorage.getItem(tabId.toString())!=null){
-        $("#appear").prop('disabled', true);
-        $("#disappear").prop('disabled', false);
+      console.log("havelocalstorage");
+      $("#appear").prop('disabled', true);
+      $("#disappear").prop('disabled', false);
     }else{
+      console.log("don'thavelocalstorage");
+      $("#appear").prop("disabled",false);
       $("#disappear").prop('disabled', true);
-      $("#appear").prop('disabled', false);
     }
   });
 });
