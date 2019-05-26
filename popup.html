@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/popup.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="boostrap/js/jquery-3.4.1.min.js"></script>
     <script src="/boostrap/js/bootstrap.min.js"></script> 
   </head>
@@ -15,9 +16,14 @@
       <button class="highlight" id="appear"> 顯示字幕 </button>
       <button class="highlight" id="disappear"> 取消字幕 </button>
       <input type="range" min="12" max="24" value="16" class="slider" id="textSizeInput">
-      <center><p>文字大小(px): <span id="textSizeOutput"></span></p></center>
+      <p>文字大小(px): <span id="textSizeOutput"></span></p>
       <input type="range" min="0" max="100" value="100" class="slider" id="textColorInput">
-      <center><p>文字透明度(%): <span id="textColorOutput"></span></p></center>
+      <p>文字透明度(%): <span id="textColorOutput"></span></p>
+      <span >Status: </span>
+      <span id="Status">init</span>
+      <div class="spinner-border text-primary" role="status">
+        <span class="sr-only" >Loading...</span>
+      </div>
       <script src="js/popup.js"></script>
     </div>
   </body>

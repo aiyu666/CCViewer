@@ -17,16 +17,22 @@ function listenCC(){
 }
 
 function showCC(){
-  $("#disappear").prop('disabled', false);
-  $("#appear").prop('disabled', true);
-  chrome.tabs.query({
-  active: true,
-  currentWindow: true
-  }, function(tabs) {
-    var tabId = tabs[0].id;
-    localStorage['tabId']=tabId;
-    StartListenCC();
-  });
+  if (getItem("listenTabId")!=null){
+    $("#disappear").prop('disabled', false);
+    $("#appear").prop('disabled', true);
+    chrome.tabs.query({
+    active: true,
+    currentWindow: true
+    }, function(tabs) {
+      var tabId = tabs[0].id;
+      localStorage['tabId']=tabId;
+      StartListenCC();
+    });
+  }
+  else{
+    alert("Please listen a youtube page first. Thanks")
+  }
+
 }
 
 function StartListenCC(){
