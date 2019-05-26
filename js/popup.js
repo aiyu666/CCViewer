@@ -17,7 +17,7 @@ function listenCC(){
 }
 
 function showCC(){
-  if (getItem("listenTabId")!=null){
+  if (localStorage.getItem("listenTabId")!=null){
     $("#disappear").prop('disabled', false);
     $("#appear").prop('disabled', true);
     chrome.tabs.query({
