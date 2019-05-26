@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf8">
+<meta name="generator" content="PSPad editor, www.pspad.com">
+<title>拖放功能研究</title>
+</head>
+<script language="javascript">
+document.onmousemove = mouseMove;//指定滑鼠移動時的函式
+document.onmousedown = mouseDown;//指定按下滑鼠時的函式
+document.onmouseup = mouseUp;//指定放開滑鼠時的函式
+
+var tarObj = null;指定要處理的物件變數
+
+function mouseMove(ev){//設定當滑鼠移動時的做為
+ev = ev || window.event;
+var mousePos = mouseCoords(ev);
+test.innerHTML = "(" + mousePos.x + "," + mousePos.y + ")";//顯示出現在的位置
+
+if (tarObj){//當有物件時設定物件的屬性(會不會動是看這裡)
+tarObj.style.position = 'absolute';
+tarObj.style.top = mousePos.y;
+tarObj.style.left = mousePos.x;
+}
+}
+function mouseCoords(ev){//取得x,y的值
+if (ev.pageX || ev.pageY){
+return {x:ev.pageX,y:ev.pageY};
+}
+return {
+x: ev.clienX + document.body.scrollLeft - document.body.clientLeft,
+y: ev.clienY + document.body.scrollTop - document.body.clientTop
+};
+}
+
+function mouseDown(ev){//當按下滑鼠時所要做的事
+ev = ev || window.event;
+var target = ev.target || ev.srcElement;
+test.innerHTML = target.id;//顯示所按下物件的名稱
+tarObj = target;//將所按下的物件傳給物件變數
+}
+
+function mouseUp(){//處理放開滑鼠按鍵時把物件變數設為null
+tarObj = null;
+}
+</script>
+<body>
+<div id="test"></div>
+<div id="item1">item 1</div>
+<div id="item2">item 2</div>
+<div id="item3">item 3</div>
+<div id="item4">item 4</div>
+<div id="item5">item 5</div>
+<div id="item6">item 6</div>
+</body>
+</html>

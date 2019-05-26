@@ -8,16 +8,24 @@ function backgroundWoker(listenTabId,tabId){
         if (ccMessageSL==undefined){
             ccMessageSL=null
         }
-        chrome.tabs.sendMessage(parseInt(tabId),{action:"UpdateDiv",id:"ccViewFL",ccMessage:ccMessageFL}, function(res) {
-          });
-        chrome.tabs.sendMessage(parseInt(tabId),{action:"UpdateDiv",id:"ccViewSL",ccMessage:ccMessageSL}, function(res) {
-          });
+        if (localStorage.getItem(tabId.toString()+"ccMessageFL") != ccMessageFL){
+            chrome.tabs.sendMessage(parseInt(tabId),{action:"UpdateDiv",id:"ccViewFL",ccMessage:ccMessageFL}, function(res) {
+                localStorage[tabId.toString()+"ccMessageFL"] = ccMessageFL
+            });
+        }
+        if (localStorage.getItem(tabId.toString()+"ccMessageSL") != ccMessageSL){
+            chrome.tabs.sendMessage(parseInt(tabId),{action:"UpdateDiv",id:"ccViewSL",ccMessage:ccMessageSL}, function(res) {
+                localStorage[tabId.toString()+"ccMessageSL"] = ccMessageSL
+            });
+        }
       });
 
 }
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.action=="Start Timer"){
+        localStorage[tabId.toString()+"ccMessageFL"] = null
+        localStorage[tabId.toString()+"ccMessageSL"] = null
         var timerId = setInterval(function(){ backgroundWoker(request.listenTabId,request.tabId) }, 250);
         sendResponse({ content: "Response from Background action: "+request.action,timerId: timerId})
       }

@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "CCLyricsViewer",
+  "name": "CCViewer",
   "description": "在其他頁面也可以聽歌看著字幕，太爽啦",
   "version": "1.0.0",
   "icons": {
