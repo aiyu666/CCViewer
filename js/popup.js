@@ -9,7 +9,7 @@ function listenCC(){
       localStorage['listenTabId']=listenTabId;
       localStorage['listentabURL']=listentabURL;
       localStorage['created']=1;
-      alert("Listen Success");
+      alert("Success!");
     }else{
       alert("This is not youtube page you can't use this chrome extension to liseten cc lyrics in other website!")
     }
@@ -65,6 +65,7 @@ function disablelistenCC(){
     });
   });
 }
+
 
 
 document.addEventListener('DOMContentLoaded', function(dcle) {

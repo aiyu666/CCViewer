@@ -23,7 +23,10 @@
       ],
       "js": [
         "js/content-script.js","boostrap/js/jquery-3.4.1.min.js"
-        ]
+      ],
+      "css":["css/content.css"
+      ]
+
     }
   ],
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",

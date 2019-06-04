@@ -24,8 +24,8 @@ function backgroundWoker(listenTabId,tabId){
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.action=="Start Timer"){
-        localStorage[tabId.toString()+"ccMessageFL"] = null
-        localStorage[tabId.toString()+"ccMessageSL"] = null
+        localStorage[request.tabId.toString()+"ccMessageFL"] = null
+        localStorage[request.tabId.toString()+"ccMessageSL"] = null
         var timerId = setInterval(function(){ backgroundWoker(request.listenTabId,request.tabId) }, 250);
         sendResponse({ content: "Response from Background action: "+request.action,timerId: timerId})
       }
