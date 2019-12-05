@@ -29,6 +29,7 @@ function showCC() {
       localStorage["status"] = 1;
       $("#disappear").prop("disabled", false);
       $("#appear").prop("disabled", true);
+      StartListenCC();
     }
   } else {
     alert("Please listen a youtube page first. Thanks");
@@ -37,14 +38,16 @@ function showCC() {
 
 function StartListenCC() {
   var listenTabId = parseInt(localStorage.getItem("listenTabId"));
-  var tabId = parseInt(localStorage.getItem("tabId"));
+  var tabId = localStorage.getItem("tabId");
   console.log("I will send a request to background");
   chrome.runtime.sendMessage(
     { action: "Start Timer", listenTabId: listenTabId, tabId: tabId },
     function(response) {
       console.log("I got Start timer from background work");
-      localStorage[tabId.toString()] = response.timerId;
-      localStorage.getItem(tabId.toString());
+      localStorage["TimmerID"] = response.timerId;
+      console.log(
+        "set a timmer success>>>>" + localStorage.getItem("TimmerID")
+      );
     }
   );
 }

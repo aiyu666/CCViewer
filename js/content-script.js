@@ -41,10 +41,22 @@ chrome.runtime.onMessage.addListener(function(message, sendResponse) {
   }
 });
 console.log(localStorage.getItem("pageList") + "<<<<<<<<<<<<<<PAGELIST");
-var pageList = localStorage.getItem("pageList")
-if ( pageList != null) {
-  pageList
+var pageList = localStorage.getItem("pageList");
+if (pageList != null) {
+  chrome.tabs.query(
+    {
+      active: true,
+      currentWindow: true
+    },
+    function(tabs) {
+      pageList.push(tabs[0].id);
+      console.log(
+        localStorage.getItem("pageList") + "<<<<<<<<<<<<<<PAGELIST after add"
+      );
+    }
+  );
 }
+
 var divccView = document.createElement("div");
 document.body.appendChild(divccView);
 divccView.id = "ccView";

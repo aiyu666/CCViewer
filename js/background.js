@@ -1,4 +1,4 @@
-function backgroundWoker(listenTabId, tabId) {
+function backgroundWoker(listenTabId) {
   chrome.tabs.sendMessage(
     parseInt(listenTabId),
     { action: "getLyrics" },
@@ -39,10 +39,8 @@ function backgroundWoker(listenTabId, tabId) {
 
 chrome.runtime.onMessage.addListener(function(request, sendResponse) {
   if (request.action == "Start Timer") {
-    localStorage[request.tabId.toString() + "ccMessageFL"] = null;
-    localStorage[request.tabId.toString() + "ccMessageSL"] = null;
     var timerId = setInterval(function() {
-      backgroundWoker(request.listenTabId, request.tabId);
+      backgroundWoker(request.listenTabId);
     }, 250);
     sendResponse({
       content: "Response from Background action: " + request.action,
