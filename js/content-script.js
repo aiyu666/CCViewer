@@ -40,22 +40,18 @@ chrome.runtime.onMessage.addListener(function(message, sendResponse) {
     });
   }
 });
+
 console.log(localStorage.getItem("pageList") + "<<<<<<<<<<<<<<PAGELIST");
-var pageList = localStorage.getItem("pageList");
-if (pageList != null) {
-  chrome.tabs.query(
-    {
-      active: true,
-      currentWindow: true
-    },
-    function(tabs) {
-      pageList.push(tabs[0].id);
-      console.log(
-        localStorage.getItem("pageList") + "<<<<<<<<<<<<<<PAGELIST after add"
-      );
-    }
+chrome.runtime.sendMessage({ action: "Get tabId" }, function(response) {
+  console.log(
+    localStorage.getItem("pageList") + "<<<<<<<<<<<<<<PAGELIST before add"
   );
-}
+  var pageList = localStorage.getItem("pageList");
+  pageList.push(response.action);
+  console.log(
+    localStorage.getItem("pageList") + "<<<<<<<<<<<<<<PAGELIST after add"
+  );
+});
 
 var divccView = document.createElement("div");
 document.body.appendChild(divccView);

@@ -13,6 +13,10 @@ function listenCC() {
         alert("Success! You can start to other page. Enjoy it !");
         $("#Status").text("Listening");
         localStoragep["status"] = 1;
+        localStorage["pageList"] = ["test"];
+        console.log(
+          localStorage.getItem("pageList") + " <<<< init sucess pagelist"
+        );
       } else {
         alert(
           "This is not youtube page you can't use this chrome extension to liseten cc lyrics in other website!"
@@ -25,7 +29,7 @@ function listenCC() {
 
 function showCC() {
   if (localStorage.getItem("listenTabId") != null) {
-    if (localStoragep.getItem("status") != 1) {
+    if (localStorage.getItem("status") != 1) {
       localStorage["status"] = 1;
       $("#disappear").prop("disabled", false);
       $("#appear").prop("disabled", true);
