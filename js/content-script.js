@@ -9,8 +9,8 @@ function show(index, top) {
   ccView.id = "ccView" + index.toString();
   ccView.style =
     "font-size:20px;background-color:#000000;z-index:3000;position:fixed;top:" +
-    top.toString() +
-    ";right:0; padding:2px;";
+    top+
+    "px;right:0; padding:2px;";
   ccView.style.color = "#FFFFFF";
 }
 
@@ -41,21 +41,13 @@ chrome.runtime.onMessage.addListener(function(message, sendResponse) {
   }
 });
 
-console.log(localStorage.getItem("pageList") + "<<<<<<<<<<<<<<PAGELIST");
-chrome.runtime.sendMessage({ action: "Get tabId" }, function(response) {
-  console.log(
-    localStorage.getItem("pageList") + "<<<<<<<<<<<<<<PAGELIST before add"
-  );
-  var pageList = localStorage.getItem("pageList");
-  pageList.push(response.action);
-  console.log(
-    localStorage.getItem("pageList") + "<<<<<<<<<<<<<<PAGELIST after add"
-  );
-});
+chrome.runtime.sendMessage({ action: "Set tabId" }, function(response) {
+    console.log(response.action+"geting tabId");
+  });
 
 var divccView = document.createElement("div");
 document.body.appendChild(divccView);
 divccView.id = "ccView";
 divccView.align = "right";
-show(0, 0);
-show(1, 20);
+show(0, "0");
+show(1, "20");

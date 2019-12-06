@@ -1,3 +1,11 @@
+function setTabId(tabId){
+  var storage = chrome.storage.local;
+  storage.get("tabIdList", function(result) {
+    console.log(result.listenTabId);
+    console.log("I can get listentab list in content script ");
+  });
+}
+
 function backgroundWoker(listenTabId) {
   chrome.tabs.sendMessage(
     parseInt(listenTabId),
@@ -36,10 +44,18 @@ function backgroundWoker(listenTabId) {
 }
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-  if (request.action == "Get tabId") {
-    console.log("I get tabId's requests>>>>>>>>" + sender.id);
+  if (request.action == "Set listenTabId"){
+     chrome.storage.local.set({"listenTabId":request.listenTabId},function(result){
+        sendResponse({
+          content: "Set listenTabId success"
+        })
+     })
+  }
+  if (request.action == "Set tabId") {
+    console.log("I get tabId's requests>>>>>>>>" + sender.tab.id);
+    setTabId(sender.tab.id);
     sendResponse({
-      action: sender.id
+      action: "I get tabId in backgound"
     });
   }
   if (request.action == "Start Timer") {
