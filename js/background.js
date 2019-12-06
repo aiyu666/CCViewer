@@ -1,65 +1,65 @@
-function backgroundWoker(listenTabId) {
-  chrome.tabs.sendMessage(
-    parseInt(listenTabId),
-    { action: "getLyrics" },
-    function(response) {
-      var ccMessageFL = response.ccMessage.dataFL;
-      var ccMessageSL = response.ccMessage.dataSL;
-      if (ccMessageFL == undefined) {
-        ccMessageFL = null;
-      }
-      if (ccMessageSL == undefined) {
-        ccMessageSL = null;
-      }
-      if (localStorage.getItem("ccMessageFL") != ccMessageFL) {
-        chrome.tabs.sendMessage(
-          parseInt(tabId),
-          { action: "UpdateDiv", id: "ccViewFL", ccMessage: ccMessageFL },
-          function(res) {
-            localStorage[tabId.toString() + "ccMessageFL"] = ccMessageFL;
-          }
-        );
-      }
-      if (
-        localStorage.getItem(tabId.toString() + "ccMessageSL") != ccMessageSL
-      ) {
-        chrome.tabs.sendMessage(
-          parseInt(tabId),
-          { action: "UpdateDiv", id: "ccViewSL", ccMessage: ccMessageSL },
-          function(res) {
-            localStorage[tabId.toString() + "ccMessageSL"] = ccMessageSL;
-          }
-        );
-      }
-    }
-  );
+function setTabId(tabId){
+  var storage = chrome.storage.local;
+  storage.get("tabIdList", function(result) {
+    console.log(result.listenTabId);
+    console.log("I can get listentab list in content script ");
+  });
 }
 
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-  if (request.action == "Get tabId") {
-    console.log("I get tabId's requests>>>>>>>>" + sender.id);
-    sendResponse({
-      action: sender.id
+function backgroundWoker(listenTabId) {
+  chrome.tabs.sendMessage(
+    listenTabId,
+    { action: "getLyrics" },
+    function(getLyrics) {
+      console.log("I get lyrics");
+      console.log(getLyrics);
+      chrome.tabs.query({currentWindow: true}, function(tabs) {
+        tabs.forEach(function(tab) {
+          chrome.tabs.sendMessage(tab.id,{action: "UpdateDiv", lyrics: getLyrics, length: getLyrics.length }, function(response){
+            console.log(response); 
+            });
+          });
+        }
+      );
     });
   }
+
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+  if (request.action == "Show all tabs"){
+  }
+  if (request.action == "Set listenTabId"){
+     chrome.storage.local.set({"listenTabId":request.listenTabId},function(result){
+        sendResponse({
+          content: "Set listenTabId success"
+        })
+     })
+  }
+
   if (request.action == "Start Timer") {
+    chrome.tabs.sendMessage(request.listenTabId,{action:"Init lyricsLine"},function(){
+      console.log("Init success");
+    });
     var timerId = setInterval(function() {
       backgroundWoker(request.listenTabId);
     }, 250);
+    chrome.storage.local.set({"timerId":timerId})
     sendResponse({
       content: "Response from Background action: " + request.action,
-      timerId: timerId
     });
   }
   if (request.action == "Stop Timer") {
-    clearInterval(request.timerId);
+    chrome.storage.local.get("timerId",function(result){
+      clearInterval(result.timerId);
+      sendResponse({
+        content: "Response from Background action: " + request.action
+      });
+    });
+    
     chrome.tabs.sendMessage(parseInt(request.tabId), {
       action: "UpdateDiv",
       ccMessage: ""
     });
-    sendResponse({
-      content: "Response from Background action: " + request.action
-    });
+    
   }
   sendResponse({
     content: "Response from Background action: " + request.action
