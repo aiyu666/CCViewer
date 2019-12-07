@@ -61,18 +61,25 @@ tags: Chrome extension
 2. 記得打開cc字幕功能
 ![](https://i.imgur.com/ge96wwA.png)
 4. 打開擴充選單
+
 ![](https://i.imgur.com/63rphIR.png)
+
 5. 點選監聽歌詞
+
 ![](https://i.imgur.com/HEKaRTx.png)
+
+
 **注意因為Chrome的分頁閒置機制問題所以以下有兩種享受方式**
+
 #### 第一種享受方式- 子母畫面
+
 ![](https://i.imgur.com/6Azs0bd.gif)
 
 #### 第二種享受方式- 直接無視（不縮小視窗）
-但這種方式不能在同個視窗分頁如下Gif
+
 ![](https://i.imgur.com/1ZPb9sz.gif)
 
-7. 開始唱歌
+7. 開始唱歌 <3
 
 
 ## 聯絡我
