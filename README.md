@@ -56,8 +56,11 @@ tags: Chrome extension
 
 ### 使用
 1. 找一個有CC字幕的youtube影片
+
 > 貼心提醒:可以使用youtube篩選功能找有沒有cc字幕唷
+
 ![](https://i.imgur.com/JYgbxDV.png)
+
 2. 記得打開cc字幕功能
 ![](https://i.imgur.com/ge96wwA.png)
 4. 打開擴充選單
