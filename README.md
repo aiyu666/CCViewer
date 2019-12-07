@@ -4,6 +4,9 @@ tags: Chrome extension
 ---
 
 # CCViewer
+![](https://i.imgur.com/MnWUIu4.png)
+
+
 你有曾經在用電腦時有以下情境嗎？
 
 > 在看網站做功課或是看文章配著youtube的音樂唱著歌
@@ -27,10 +30,52 @@ tags: Chrome extension
 > 5. 你可能會沒朋友
 
 ## 安裝
+### Chrome 擴充商店(Comming soon 正在審核QQ)
+
+### Github
 
 
+## 使用
+1. 連結至[此網址](https://github.com/aiyu666/CCViewer)
+![](https://i.imgur.com/L3pzwN7.png)
+
+2. 下載此專案
+![](https://i.imgur.com/KGZV0Kl.png)
+
+3. 打開Chrome瀏覽器右上方選單至擴充功能
+![](https://i.imgur.com/mVJdalY.png)
+
+4. 打開 **開發者模式**
+![](https://i.imgur.com/rCBsY6E.png)
+
+5. 點選左上方的載入未封裝項目
+![](https://i.imgur.com/VMsPOnG.png)
+
+6. 找到剛剛下載好的專案資料夾(如果是壓縮的ZIP記得解壓縮)
+7. 有Github帳號的同學按下星星。
+
+### 使用
+1. 找一個有CC字幕的youtube影片
+> 貼心提醒:可以使用youtube篩選功能找有沒有cc字幕唷
+![](https://i.imgur.com/JYgbxDV.png)
+2. 記得打開cc字幕功能
+![](https://i.imgur.com/ge96wwA.png)
+4. 打開擴充選單
+![](https://i.imgur.com/63rphIR.png)
+5. 點選監聽歌詞
+![](https://i.imgur.com/HEKaRTx.png)
+**注意因為Chrome的分頁閒置機制問題所以以下有兩種享受方式**
+#### 第一種享受方式- 子母畫面
+![](https://i.imgur.com/6Azs0bd.gif)
+
+#### 第二種享受方式- 直接無視（不縮小視窗）
+但這種方式不能在同個視窗分頁如下Gif
+![](https://i.imgur.com/1ZPb9sz.gif)
+
+7. 開始唱歌
 
 
+## 聯絡我
+有任何問題可以用以下email聯絡我
 
-
-以上
+email: zrobin8741@gmail.com
