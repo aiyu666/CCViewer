@@ -4,7 +4,7 @@ tags: Chrome extension
 ---
 
 # CCViewer
-![](https://i.imgur.com/MnWUIu4.png)
+![](https://i.imgur.com/6Azs0bd.gif)
 
 
 你有曾經在用電腦時有以下情境嗎？
