@@ -40,6 +40,7 @@ function StartListenCC(listenTabId) {
     function(response) {
       chrome.storage.local.set({"timerId": response.timerId});
       alert("監聽成功，你可以去其他頁面做事囉～但是注意不要把我縮下去唷，可以開子母畫面。Enjoy it !");
+      $("#Status").text("Listening");
     }
   );
 }
@@ -53,6 +54,7 @@ function disablelistenCC() {
     },
     function(response) {
       alert("取消監聽成功！歡迎在使用我唷<3");
+      $("#Status").text("Wait Listen");
     }
   );
 }
