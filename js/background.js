@@ -7,12 +7,11 @@ function setTabId(tabId){
 }
 
 function backgroundWoker(listenTabId) {
+  console.log(listenTabId);
   chrome.tabs.sendMessage(
     listenTabId,
-    { action: "getLyrics" },
-    function(getLyrics) {
-      console.log("I get lyrics");
-      console.log(getLyrics);
+    { action: "getLyrics" }, function(getLyrics) {
+      // console.log(getLyrics);
       chrome.tabs.query({currentWindow: true}, function(tabs) {
         tabs.forEach(function(tab) {
           chrome.tabs.sendMessage(tab.id,{action: "UpdateDiv", lyrics: getLyrics, length: getLyrics.length }, function(response){
@@ -21,7 +20,8 @@ function backgroundWoker(listenTabId) {
           });
         }
       );
-    });
+      });
+
   }
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
@@ -41,7 +41,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     });
     var timerId = setInterval(function() {
       backgroundWoker(request.listenTabId);
-    }, 250);
+    }, 1000);
     chrome.storage.local.set({"timerId":timerId})
     sendResponse({
       content: "Response from Background action: " + request.action,
