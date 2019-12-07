@@ -33,10 +33,13 @@ function listenCC() {
 }
 
 function StartListenCC(listenTabId) {
+  $("#appear").prop("disabled", true);
+  $("#disappear").prop("disabled", false);
   chrome.runtime.sendMessage(
     { action: "Start Timer", "listenTabId":listenTabId},
     function(response) {
-      alert("Success! You can start to other page. Enjoy it !");
+      chrome.storage.local.set({"timerId": response.timerId});
+      alert("監聽成功，你可以去其他頁面做事囉～但是注意不要把我縮下去唷，可以開子母畫面。Enjoy it !");
     }
   );
 }
@@ -49,7 +52,7 @@ function disablelistenCC() {
       action: "Stop Timer",
     },
     function(response) {
-      console.log(response.content)
+      alert("取消監聽成功！歡迎在使用我唷<3");
     }
   );
 }
