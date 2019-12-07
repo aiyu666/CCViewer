@@ -21,53 +21,54 @@ function show(index, lyricsTop) {
 function getLyrics() {
   var lyrics = [];
   var lyricsObject = $(".ytp-caption-segment");
-  console.log(lyricsObject);
   var length = $(".ytp-caption-segment").length;
   for (i=0 ; i<length; i++){
     lyrics.push($(".ytp-caption-segment")[i].innerText);
   }
-  console.log("GETTTTT");
-  console.log(lyrics);
-
-  return lyrics;
+  return lyrics
 }
-
-chrome.runtime.onMessage.addListener(function(message, sendResponse) {
+//---------------------------------------
+// RUN TIME ONCE MESSAGE RECIVE
+chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
   if (message.action == "Init lyricsLine") {
-    chrome.storage.local.set({"lyricsLine":2,"top":20});
-  }
+    chrome.storage.local.set({"lyricsLine":2,"lyricsTop":30});
+  };
+
   if (message.action == "UpdateDiv") {
     var lyricsLengh = message.length;
+    chrome.storage.local.get(["lyricsLine","lyricsTop"],function(result){
     var lyricsLine = result.lyricsLine; 
-    var lyricsTop = result.top;
+    var lyricsTop = result.lyricsTop;
     var diffLine = lyricsLengh - lyricsLine;
-    chrome.storage.local.get(["lyricsLine","top"],function(result){
-      if ( diffLine > 1 ){
-        for (i = 0 ; i < diffLine; i++){
-          lyricsTop += 20;
-          lyricsLine += 1;
-          show(lyricsLine, lyricsTop);
+    if ( diffLine > 1 ){
+      for (i = 0 ; i < diffLine; i++){
+        lyricsTop += 30;
+        lyricsLine += 1;
+        show(lyricsLine, lyricsTop);
         }
         chrome.storage.local.set({"lyricsLine":lyricsLine,"lyricsTop":lyricsTop});
       };
-      
+    for (i= 0 ; i < lyricsLine; i++){
+      console.log();
+      if (message.lyrics[i]==undefined){
+        updateCCView(i, ""); 
+      }else{
+        updateCCView(i, message.lyrics[i]); 
+      }
+       
+    };
     })
-    for (i= 0 ; i < lyricsLengh; i++){
-      updateCCView(i, message.lyrics[i]);  
-    }
-    
-    sendResponse({ content: "content script finish(UpdateDiv)" });
-  }
+
+    sendResponse("Update Complete")
+  };
+
   if (message.action == "getLyrics") {
-    console.log("I get a action about get lyrics");
-    lyrics = getLyrics();
-    sendResponse({
-      content: "content script finish(getLyrics)",
-      lyrics: lyrics
-    });
-  }
+    var lyrics = getLyrics();
+    sendResponse(lyrics)
+  };
 });
 
+// Create ccviewLine when page load
 var divccView = document.createElement("div");
 document.body.appendChild(divccView);
 divccView.id = "ccView";
@@ -75,8 +76,8 @@ divccView.align = "right";
 chrome.storage.local.get(["lyricsLine"],function(result){
   var lyricsLine = result.lyricsLine;
   var lyricsTop = 0;
-  for (i = 0; i > lyricsLine; i++){
+  for (i = 0; i < lyricsLine; i++){
     show(i, lyricsTop);
-    lyricsTop += 20;
+    lyricsTop += 30;
   }
 });
