@@ -49,7 +49,6 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
         chrome.storage.local.set({"lyricsLine":lyricsLine,"lyricsTop":lyricsTop});
       };
     for (i= 0 ; i < lyricsLine; i++){
-      console.log();
       if (message.lyrics[i]==undefined){
         updateCCView(i, ""); 
       }else{
