@@ -72,7 +72,7 @@ tags: Chrome extension
 ![](https://i.imgur.com/HEKaRTx.png)
 
 
-**注意因為Chrome的分頁閒置機制問題所以以下有兩種享受方式**
+**注意因為YotubeCC字幕的機制問題所以無法將視窗縮小或是在同個視窗切分頁，但是有以下有兩種享受方式提供給您**
 
 #### 第一種享受方式- 子母畫面
 
