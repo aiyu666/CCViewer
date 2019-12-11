@@ -7,7 +7,7 @@ tags: Chrome extension
 ![](https://i.imgur.com/6Azs0bd.gif)
 
 
-你有曾經在用電腦時有以下情境嗎？
+你有曾經在用電腦時有以下情境嗎:question: 
 
 > 在看網站做功課或是看文章配著youtube的音樂唱著歌
 > Shit... 忘記歌詞 （點選youtube的分頁把進度條拉回剛剛那句話..
@@ -16,13 +16,14 @@ tags: Chrome extension
 以上情境如果你有遇過的話
 這款chrome的擴充套件對你來說應該是...**真香** :yum: 
 
-簡單來說這是一個Chrome 套件給 Youtube CC字幕的擴充
-此款擴充有三大優點
+簡單來說這是一個Chrome擴充套件為了方便在其他頁面也能看Youtube CC字幕
+
+此款擴充有三大優點 :+1: 
 > 1. 讓你無時無地都可以練唱把你的魔音穿腦展現給你週遭的人
 > 2. 讓你歌詞不卡卡
 > 3. 裝逼假裝你歌詞都記超熟
 
-相對也帶來以下缺點
+相對也帶來以下缺點 :cry: 
 > 1. 你可能會沒朋友
 > 2. 無法一心二用的人可能會丟了工作
 > 3. 你可能會沒朋友
@@ -30,8 +31,9 @@ tags: Chrome extension
 > 5. 你可能會沒朋友
 
 ## 安裝
-### Chrome 擴充商店(Comming soon 正在審核QQ)
-
+建議使用Chrome 擴充商店直接安裝比較方便快速且較穩定 :ok_woman: 
+### Chrome 擴充商店
+[點我](https://chrome.google.com/webstore/detail/ccviewer/knacaicmpbfncgmdmkebpbomemlglncb?hl=zh-TW)去Chrome線上應用商店-CCViewer
 ### Github
 
 
