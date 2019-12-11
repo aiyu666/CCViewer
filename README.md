@@ -29,15 +29,12 @@ tags: Chrome extension
 > 3. 你可能會沒朋友
 > 4. 臉皮會增厚
 > 5. 你可能會沒朋友
-
+---
 ## 安裝
 建議使用Chrome 擴充商店直接安裝比較方便快速且較穩定 :ok_woman: 
 ### Chrome 擴充商店
 [點我](https://chrome.google.com/webstore/detail/ccviewer/knacaicmpbfncgmdmkebpbomemlglncb?hl=zh-TW)去Chrome線上應用商店-CCViewer
 ### Github
-
-
-## 使用
 1. 連結至[此網址](https://github.com/aiyu666/CCViewer)
 ![](https://i.imgur.com/L3pzwN7.png)
 
@@ -56,7 +53,9 @@ tags: Chrome extension
 6. 找到剛剛下載好的專案資料夾(如果是壓縮的ZIP記得解壓縮)
 7. 有Github帳號的同學按下星星。
 
+---
 ### 使用
+
 1. 找一個有CC字幕的youtube影片
 
 > 貼心提醒:可以使用youtube篩選功能找有沒有cc字幕唷
