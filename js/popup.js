@@ -24,9 +24,9 @@ function listenCC() {
         StartListenCC(listenTabId);
       } else {
         alert(
-          "This is not youtube page you can't use this chrome extension to liseten cc lyrics in other website!"
+          "這個頁面不是 Youtube 的頁面哦，請至 Youtube 的頁面監聽。\nThis is not youtube page you can't use this chrome extension to liseten cc lyrics in other website!"
         );
-        $("#Status").text("Listen Fail");
+        $("#Status").text("Status: Listen Fail");
       }
     }
   );
@@ -36,11 +36,11 @@ function StartListenCC(listenTabId) {
   $("#appear").prop("disabled", true);
   $("#disappear").prop("disabled", false);
   chrome.runtime.sendMessage(
-    { action: "Start Timer", "listenTabId":listenTabId},
+    { action: "Start Timer", "listenTabId": listenTabId },
     function(response) {
-      chrome.storage.local.set({"timerId": response.timerId});
+      chrome.storage.local.set({ "timerId": response.timerId });
       alert("監聽成功，你可以去其他頁面做事囉～但是注意不要把我縮下去唷，可以開子母畫面。Enjoy it !");
-      $("#Status").text("Listening");
+      $("#Status").text("Status: Listening");
     }
   );
 }
